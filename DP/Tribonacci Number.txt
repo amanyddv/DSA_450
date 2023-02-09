@@ -1,3 +1,5 @@
+link : https://leetcode.com/problems/n-th-tribonacci-number/?envType=study-plan&id=dynamic-programming-i
+
 class Solution {
 public:
     int tribonacci(int n) {
@@ -7,6 +9,24 @@ public:
     }
 };
 
-link : https://leetcode.com/problems/n-th-tribonacci-number/?envType=study-plan&id=dynamic-programming-i
 
 Time Complexity: O(2^n)
+
+class Solution {
+public:
+
+    int tri(int n,vector<int>&dp){
+        if(n==0) return 0;
+        else if(n==1 || n==2) return 1;
+        else if(dp[n]!=-1) return dp[n];
+        return dp[n]=tri(n-3,dp) +tri(n-2,dp)+tri(n-1,dp);
+    }
+    int tribonacci(int n) {
+        vector<int>dp(n+1,-1);
+        if(n==0) return 0;
+        else if(n==1 || n==2) return 1;
+        return tri(n-3,dp) +tri(n-2,dp)+tri(n-1,dp);
+    }
+};
+
+Time Complexity: O(n)
