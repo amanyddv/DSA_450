@@ -1,0 +1,32 @@
+https://leetcode.com/problems/number-of-islands/
+
+class Solution {
+public:
+  void dfs(vector<vector<char>>&grid,int sr,int sc,vector<vector<int>>&vis){
+        if(sr>=0 && sc>=0 && sr <grid.size() && sc<grid[0].size() && grid[sr][sc]=='1' && !vis[sr][sc]){
+            vis[sr][sc]=1;
+            dfs(grid,sr+1,sc,vis);
+            dfs(grid,sr-1,sc,vis);
+            dfs(grid,sr,sc+1,vis);
+            dfs(grid,sr,sc-1,vis);
+
+        }
+    }
+    int numIslands(vector<vector<char>>& grid) {
+        int count=0;
+        vector<vector<int>>vis(grid.size(),vector<int>(grid[0].size(),0));
+        for(int i=0;i<grid.size();i++){
+            for(int j=0;j<grid[0].size();j++){
+                if(!vis[i][j] && grid[i][j]!='0'){
+                    dfs(grid,i,j,vis);
+                    count++;
+                }
+            }
+        }
+return count;        
+        
+        
+    }
+};
+
+Time Complexity : O(row*col)

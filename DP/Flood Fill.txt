@@ -1,0 +1,25 @@
+https://leetcode.com/problems/flood-fill/?envType=study-plan&id=graph-i
+
+class Solution {
+public:
+
+    void dfs(vector<vector<int>>&image,int sr,int sc,int old,int neww,vector<vector<int>>&vis){
+        if(sr>=0 && sc>=0 && sr <image.size() && sc<image[0].size() && image[sr][sc]==old && !vis[sr][sc]){
+            image[sr][sc]=neww;
+            vis[sr][sc]=1;
+            dfs(image,sr+1,sc,old,neww,vis);
+            dfs(image,sr-1,sc,old,neww,vis);
+            dfs(image,sr,sc+1,old,neww,vis);
+            dfs(image,sr,sc-1,old,neww,vis);
+
+        }
+    }
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int neww) {
+        int old=image[sr][sc];
+        vector<vector<int>>vis(image.size(),vector<int>(image[0].size(),0));
+        dfs(image,sr,sc,old,neww,vis);
+        return image;
+    }
+};
+
+Time Complexity : O(row*col)
