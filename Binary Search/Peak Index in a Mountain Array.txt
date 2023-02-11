@@ -1,0 +1,20 @@
+https://leetcode.com/problems/peak-index-in-a-mountain-array/
+
+class Solution {
+public:
+
+    int bs(vector<int>&arr,int l,int r){
+        if(l==r) return -1;
+        int mid=(l+r)/2;
+        if(arr[mid]>arr[mid+1] && arr[mid]>arr[mid-1] ) return mid;
+        if(arr[mid]>arr[mid+1]){
+            return bs(arr,l,mid-1);
+        }
+        else return bs(arr,mid+1,r);
+        return -1;
+    }
+    int peakIndexInMountainArray(vector<int>& arr) {
+        return bs(arr,0,arr.size()-1);
+    }
+};
+

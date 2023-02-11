@@ -1,0 +1,38 @@
+https://leetcode.com/problems/max-area-of-island/
+
+
+class Solution {
+public:
+
+ void dfs(vector<vector<int>>&grid,int sr,int sc,vector<vector<int>>&vis,int & count){
+        if(sr>=0 && sc>=0 && sr <grid.size() && sc<grid[0].size() && grid[sr][sc]==1 && !vis[sr][sc]){
+            ++count;
+            vis[sr][sc]=1;
+            dfs(grid,sr+1,sc,vis,count);
+            dfs(grid,sr-1,sc,vis,count);
+            dfs(grid,sr,sc+1,vis,count);
+            dfs(grid,sr,sc-1,vis,count);
+
+        }
+    }
+    int maxAreaOfIsland(vector<vector<int>>& grid) {
+         int ans=0;
+        vector<vector<int>>vis(grid.size(),vector<int>(grid[0].size(),0));
+        for(int i=0;i<grid.size();i++){
+            for(int j=0;j<grid[0].size();j++){
+                if(!vis[i][j] && grid[i][j]!=0){
+                             int count=0;
+
+                    dfs(grid,i,j,vis,count);
+                    ans=max(ans,count);
+                }
+            }
+        }
+return ans;        
+        
+        
+    }
+};
+
+
+Time Complexity (row*col*(V+E))
