@@ -1,0 +1,31 @@
+https://leetcode.com/problems/find-the-distance-value-between-two-arrays/description/?envType=study-plan&id=binary-search-i
+
+
+class Solution {
+public:
+    int findTheDistanceValue(vector<int>& arr1, vector<int>& arr2, int d) {
+     int distance = 0;
+    sort(arr2.begin(), arr2.end());
+    for(int ele:arr1){
+        int flag=false;
+        int l=0,r=arr2.size()-1;
+        while(l<=r){
+            int mid=(l+r)/2;
+            if(ele-arr2[mid]<=d && arr2[mid]-ele<=d){
+                flag=true;
+                break;
+            }
+            if(ele-arr2[mid]>d) l=mid+1;
+            else r=mid-1;
+
+        }
+        
+        if(flag==false) distance++;
+    }
+    
+    return distance;
+    }
+};
+
+Time Complexity: O(m * logm)
+Space Complexity: O(1)
